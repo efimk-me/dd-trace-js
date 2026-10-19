@@ -225,7 +225,9 @@ function prepareRumCorrelation (task, attemptIndex) {
     typeof window === 'undefined' ||
     typeof document === 'undefined' ||
     typeof rumTestExecutionIdCookieName !== 'string'
-  ) return
+  ) {
+    return
+  }
 
   const testExecutionId = generateTestExecutionId()
   if (
@@ -770,7 +772,9 @@ function getEarlyFlakeDetectionSuiteCandidate (suite) {
       attemptToFixTests[testSuite]?.[testName] ||
       disabledTests[testSuite]?.[testName] ||
       !isEarlyFlakeDetectionTest(testSuite, testName)
-    ) continue
+    ) {
+      continue
+    }
 
     candidate ||= {
       hasNewTest: false,

@@ -310,7 +310,9 @@ function isCleanupAuthorizationValid (filename, authorization) {
       rootStat.dev !== authorization.rootDevice ||
       rootStat.ino !== authorization.rootInode ||
       authorization.physicalParent === undefined
-    ) return false
+    ) {
+      return false
+    }
     const physicalParent = fs.realpathSync(path.dirname(filename))
     const parentStat = fs.statSync(physicalParent, { bigint: true })
     if (physicalParent !== authorization.physicalParent ||

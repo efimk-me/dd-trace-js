@@ -463,7 +463,9 @@ class OpenAIAgentsIntegration {
     if (
       !traceInfo?.currentTopLevelAgentSpanId ||
       !this.#hasUntracedPathToAncestor(oaiSpan.parentId, traceInfo.currentTopLevelAgentSpanId)
-    ) return
+    ) {
+      return
+    }
     return traceInfo.currentTopLevelAgentName
   }
 

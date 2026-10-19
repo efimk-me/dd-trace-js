@@ -126,11 +126,8 @@ async function traverseGetPropertiesResult (props, opts, depth) {
     if (prop.value === undefined) continue
     const { value: { type, objectId, subtype, description } } = prop
     if (type === 'object') {
-      if (
-        objectId === undefined ||
-        // if `subtype` is "null"
-        LEAF_SUBTYPES.has(subtype)
-      ) continue // don't waste time with these subtypes
+      // if `subtype` is "null"
+      if (objectId === undefined || LEAF_SUBTYPES.has(subtype)) continue // don't waste time with these subtypes
       const size = parseLengthFromDescription(description, subtype)
       if (size !== null && size >= LARGE_OBJECT_SKIP_THRESHOLD) {
         const empty = []

@@ -145,7 +145,9 @@ class WebdriverioVideo {
         command === 'takeScreenshot' || endpoint?.endsWith('/screenshot') ||
         // WDIO looks up the context before BiDi navigation. Capturing in that gap can block navigation.
         command === 'getWindowHandle' || command === 'getWindowHandles'
-      ) return
+      ) {
+        return
+      }
       this.capture()
     }
     browser.on?.('result', this.#onResult)

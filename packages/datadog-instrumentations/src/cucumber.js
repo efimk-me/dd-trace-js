@@ -500,7 +500,9 @@ function finishParallelSuiteIfDone (testFileAbsolutePath) {
     !expectedPickles ||
     finished.length !== expectedPickles.length ||
     finishedParallelSuites.has(testFileAbsolutePath)
-  ) return
+  ) {
+    return
+  }
 
   finishedParallelSuites.add(testFileAbsolutePath)
   testSuiteFinishCh.publish({

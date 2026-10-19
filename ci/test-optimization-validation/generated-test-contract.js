@@ -128,7 +128,9 @@ function getGeneratedTestContractError (framework) {
     !strategy ||
     !['planned', 'verified'].includes(strategy.status) ||
     !['cucumber', 'cypress', 'jest', 'mocha', 'playwright', 'vitest'].includes(framework.framework)
-  ) return
+  ) {
+    return
+  }
   if (!['commonjs', 'esm'].includes(strategy.moduleSystem)) {
     return 'must retain generatedTestStrategy.moduleSystem as "commonjs" or "esm".'
   }

@@ -15,7 +15,9 @@ function onResponseBody ({ req, res, body }) {
     !body ||
     typeof body !== 'object' ||
     apiSecurity.sampleRequest(req, res) !== apiSecurity.SamplingDecision.SAMPLE
-  ) return
+  ) {
+    return
+  }
 
   // we don't support blocking at this point, so no results needed
   waf.run({

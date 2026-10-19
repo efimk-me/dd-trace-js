@@ -180,7 +180,9 @@ class Kinesis extends BaseAwsSdkPlugin {
       !response ||
       !response.Records ||
       !response.Records[0]
-    ) return
+    ) {
+      return
+    }
 
     // Only attribute payloadSize to the span when there is a single record.
     span = response.Records.length > 1 ? null : span

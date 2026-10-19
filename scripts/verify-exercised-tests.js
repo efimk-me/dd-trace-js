@@ -987,7 +987,9 @@ function isCategoryCoveredByOtherScript (scriptPrefixes, category) {
       scriptPrefixes.has(`test:${key}`) ||
       scriptPrefixes.has(`test:trace:${key}`) ||
       scriptPrefixes.has(`test:integration:${key}`)
-    ) return true
+    ) {
+      return true
+    }
   }
 
   return false
@@ -1197,7 +1199,9 @@ function main (repoRootArg) {
       !name.startsWith('test:integration') ||
       name === 'test:integration:plugins' ||
       name === 'test:integration:plugins:coverage'
-    ) continue
+    ) {
+      continue
+    }
     if (!isInvokedOrCoverageSibling(name)) {
       pushError(`package.json: script "${name}" is not invoked by any GitHub Actions workflow`)
     }

@@ -123,7 +123,9 @@ function onTagsUpdate (span) {
   if (
     !endpointResolvedCh.hasSubscribers || cached.endpointFinal || cached.webTags !== tags ||
     finalEndpoint(tags) === undefined
-  ) return
+  ) {
+    return
+  }
   cached.endpointFinal = true
   endpointResolvedCh.publish(span)
 }

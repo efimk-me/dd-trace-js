@@ -214,8 +214,7 @@ function assertBooleanFields (object, keys, endpoint) {
 
 function assertOptionalBoundedNumber (value, endpoint) {
   if (value === undefined) return
-  if (!Number.isFinite(value) || !Number.isInteger(value) ||
-    value < 0 || value > MAX_RETRIES) {
+  if (!Number.isFinite(value) || !Number.isInteger(value) || value < 0 || value > MAX_RETRIES) {
     throw new TypeError(`Invalid ${endpoint}: value must be between 0 and ${MAX_RETRIES}`)
   }
 }

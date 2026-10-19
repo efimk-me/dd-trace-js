@@ -1055,10 +1055,9 @@ function createWrapCallbackGetConnection (options) {
   return function wrapGetConnection (getConnection) {
     return function () {
       const callback = arguments[arguments.length - 1]
-      if (
-        typeof callback !== 'function' ||
-        !connectionStartCh.hasSubscribers
-      ) return getConnection.apply(this, arguments)
+      if (typeof callback !== 'function' || !connectionStartCh.hasSubscribers) {
+        return getConnection.apply(this, arguments)
+      }
 
       if (!acquireStartCh.hasSubscribers) {
         const ctx = {}

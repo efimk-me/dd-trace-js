@@ -1860,15 +1860,13 @@ function isTestSetupOrCiFile (file) {
   const relativePath = file.relativePath
   const basename = path.basename(relativePath)
 
-  return Boolean(
-    isWorkflowFile(relativePath) ||
+  return isWorkflowFile(relativePath) ||
     basename === 'package.json' ||
     /^(?:jest|config-jest|vitest|vite|playwright|cypress|cucumber)\.config\./.test(basename) ||
     /^\.mocharc\./.test(basename) ||
     basename === 'cypress.json' ||
     /setup|bootstrap/i.test(basename) ||
     relativePath.startsWith('cypress/support/')
-  )
 }
 
 /**

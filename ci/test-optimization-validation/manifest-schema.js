@@ -441,8 +441,7 @@ function validateCiWiring (repositoryRoot, ciWiring, prefix, errors) {
   if (typeof ciWiring.reviewComplete !== 'boolean') errors.push(`${prefix}.reviewComplete must be a boolean.`)
   validateStringArray(ciWiring.unresolved, `${prefix}.unresolved`, errors)
 
-  if (isObject(ciWiring.initialization) &&
-    INITIALIZATION_STATUSES.has(ciWiring.initialization.status)) {
+  if (isObject(ciWiring.initialization) && INITIALIZATION_STATUSES.has(ciWiring.initialization.status)) {
     validateStringArray(ciWiring.initialization.evidence, `${prefix}.initialization.evidence`, errors)
   } else {
     errors.push(`${prefix}.initialization.status must be configured, not_configured, or unknown.`)

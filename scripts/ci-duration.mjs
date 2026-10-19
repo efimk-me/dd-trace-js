@@ -350,7 +350,9 @@ function selectRuns (runs) {
       run.status !== 'completed' ||
       workflowPath === ALL_GREEN_WORKFLOW ||
       workflowPath === REPORT_WORKFLOW
-    ) continue
+    ) {
+      continue
+    }
 
     const previous = selected.get(workflowPath)
     if (!previous || (run.run_attempt ?? 1) > (previous.run_attempt ?? 1)) {
@@ -424,10 +426,9 @@ export async function collectSnapshot (
   }))
 
   await Promise.all(workflows.map(async workflow => {
-    if (
-      classifyDuration(workflow.durationMs) === 'healthy' ||
-      classifyDuration(workflow.durationMs) === 'unknown'
-    ) return
+    if (classifyDuration(workflow.durationMs) === 'healthy' || classifyDuration(workflow.durationMs) === 'unknown') {
+      return
+    }
 
     workflow.analysis = analyzeJobs(await getJobs(api, workflow))
   }))

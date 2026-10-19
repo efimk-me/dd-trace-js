@@ -754,7 +754,9 @@ function isTestFile (filename, source, framework, projectRoot, allowDirectoryCon
     normalized.includes('/dd-test-optimization-validation-') ||
     TYPE_ONLY_TEST_PATTERN.test(basename) ||
     TYPE_ONLY_DIRECTORY_PATTERN.test(normalized)
-  ) return false
+  ) {
+    return false
+  }
   if (framework === 'cucumber') return cucumber.isTestFile(filename)
   if (framework === 'cypress') return cypress.isTestFile(basename, path.dirname(filename), projectRoot)
   if (framework === 'playwright') return playwright.isTestFile(basename, path.dirname(filename), projectRoot)

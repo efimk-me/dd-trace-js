@@ -88,7 +88,9 @@ function getFrameworkCiDiscoveryContradiction (framework, manifest) {
     !Array.isArray(ciDiscovery.staticFound) ||
     ciDiscovery.staticFound.length === 0 ||
     !frameworkClaimsNoCi(framework)
-  ) return null
+  ) {
+    return null
+  }
 
   return {
     reason: 'CI workflow files were found by validator static diagnosis, but this manifest entry says no CI ' +

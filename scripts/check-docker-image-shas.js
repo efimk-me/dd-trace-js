@@ -34,9 +34,9 @@ for (const file of listFilesFromGit()) {
 
     // Skip environment variables ($VAR) and GitHub Actions expressions (${{ ... }})
     if (
-      (ref.startsWith('$')) ||
+      ref.startsWith('$') ||
       // Skip already-pinned references
-      (ref.includes('@sha256:'))
+      ref.includes('@sha256:')
     ) continue
 
     violations.push({ file: file.replaceAll('\\', '/'), line: i + 1, text: lines[i].trim() })

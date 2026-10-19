@@ -519,7 +519,7 @@ const localActionFileCache = new Map()
  * @returns {string|null}
  */
 function resolveLocalActionFile (repoRoot, uses) {
-  if ((typeof uses !== 'string') || !uses.startsWith('./')) return null
+  if (typeof uses !== 'string' || !uses.startsWith('./')) return null
 
   const cached = localActionFileCache.get(uses)
   if (cached !== undefined) return cached

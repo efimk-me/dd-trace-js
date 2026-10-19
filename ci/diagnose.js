@@ -1743,7 +1743,7 @@ function readTextFiles (root, physicalRoot, files, maxTotalBytes) {
 
   for (const relativePath of files) {
     const file = getSafeScannedFile(root, physicalRoot, relativePath)
-    if (!file || (file.stat.size > MAX_TEXT_FILE_SIZE)) continue
+    if (!file || file.stat.size > MAX_TEXT_FILE_SIZE) continue
     if (totalBytes + file.stat.size > maxTotalBytes) {
       textFiles.truncated = true
       break
@@ -1860,7 +1860,15 @@ function isTestSetupOrCiFile (file) {
   const relativePath = file.relativePath
   const basename = path.basename(relativePath)
 
-  return Boolean(isWorkflowFile(relativePath) || (basename === 'package.json') || /^(?:jest|config-jest|vitest|vite|playwright|cypress|cucumber)\.config\./.test(basename) || /^\.mocharc\./.test(basename) || (basename === 'cypress.json') || /setup|bootstrap/i.test(basename) || relativePath.startsWith('cypress/support/'))
+  return Boolean(
+    isWorkflowFile(relativePath) ||
+    basename === 'package.json' ||
+    /^(?:jest|config-jest|vitest|vite|playwright|cypress|cucumber)\.config\./.test(basename) ||
+    /^\.mocharc\./.test(basename) ||
+    basename === 'cypress.json' ||
+    /setup|bootstrap/i.test(basename) ||
+    relativePath.startsWith('cypress/support/')
+  )
 }
 
 /**

@@ -320,9 +320,9 @@ function buildRedact (value, ancestors) {
   if (typeof value.toJSON === 'function') {
     const json = value.toJSON()
     if (
-      (typeof json !== 'object' || json === null || json === value) ||
+      typeof json !== 'object' || json === null || json === value ||
       // Re-screen: toJSON can return a TypedArray or Binary BSON wrapper.
-      (ArrayBuffer.isView(json) || json._bsontype === 'Binary')
+      ArrayBuffer.isView(json) || json._bsontype === 'Binary'
     ) return REDACT_LEAF
     value = json
   } else if (bsontype !== undefined) {

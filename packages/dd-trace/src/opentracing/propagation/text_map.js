@@ -982,9 +982,9 @@ class TextMapPropagator {
       // W3C Trace Context §3.3.1.1: multiple tracestate fields MUST be combined per RFC 7230 §3.2.2.
       const tracestate = TraceState.fromString(readTracestate(carrier))
       if (
-        (invalidSegment.test(traceId) || invalidSegment.test(spanId)) ||
+        invalidSegment.test(traceId) || invalidSegment.test(spanId) ||
         // Version ff is considered invalid
-        (version === 'ff')
+        version === 'ff'
       ) return
 
       // Version 00 should have no tail, but future versions may

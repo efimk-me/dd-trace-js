@@ -142,9 +142,9 @@ class WebdriverioVideo {
     this.#onResult = /** @param {{command?: string, endpoint?: string}} event */ (event) => {
       const { command, endpoint } = event
       if (
-        (command === 'takeScreenshot' || endpoint?.endsWith('/screenshot')) ||
+        command === 'takeScreenshot' || endpoint?.endsWith('/screenshot') ||
         // WDIO looks up the context before BiDi navigation. Capturing in that gap can block navigation.
-        (command === 'getWindowHandle' || command === 'getWindowHandles')
+        command === 'getWindowHandle' || command === 'getWindowHandles'
       ) return
       this.capture()
     }

@@ -121,8 +121,8 @@ function onTagsUpdate (span) {
   // when nobody is listening, keeping this the same early return it used to be
   // for consumers that only care about web-tag discovery.
   if (
-    (!endpointResolvedCh.hasSubscribers || cached.endpointFinal || cached.webTags !== tags) ||
-    (finalEndpoint(tags) === undefined)
+    !endpointResolvedCh.hasSubscribers || cached.endpointFinal || cached.webTags !== tags ||
+    finalEndpoint(tags) === undefined
   ) return
   cached.endpointFinal = true
   endpointResolvedCh.publish(span)

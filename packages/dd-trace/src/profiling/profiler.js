@@ -367,9 +367,9 @@ class Profiler extends EventEmitter {
 
     const endpointName = endpointNameFromTags(tags)
     if (
-      (!endpointName) ||
+      !endpointName ||
       // Make sure this is the outermost web span, just in case so we don't overcount
-      (findWebSpan(getStartedSpans(context), context._parentId))
+      findWebSpan(getStartedSpans(context), context._parentId)
     ) return
 
     let counter = this.#endpointCounts.get(endpointName)

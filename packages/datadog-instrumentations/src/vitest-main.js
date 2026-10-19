@@ -1231,9 +1231,9 @@ function getFinishWrapper (exitOrClose) {
       this.state.getCountOfFailedTests() > 0 || this.state.getUnhandledErrors().length > 0
     const testSessionEmptyReason = hasErrors || hasExecutedTests
       ? undefined
-      : (isEmptyShard
-          ? 'zero_test_shard'
-          : tests.length > 0 || skippedSuites.length > 0 ? 'all_tests_skipped' : 'zero_tests')
+      : isEmptyShard
+        ? 'zero_test_shard'
+        : tests.length > 0 || skippedSuites.length > 0 ? 'all_tests_skipped' : 'zero_tests'
     const status = hasErrors ? 'fail' : (testSessionEmptyReason ? 'skip' : 'pass')
     const flushPromise = getChannelPromise(testSessionFinishCh, {
       status,

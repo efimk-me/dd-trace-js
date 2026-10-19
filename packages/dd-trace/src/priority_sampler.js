@@ -120,8 +120,8 @@ class PrioritySampler {
 
     // TODO: remove the decision maker tag when priority is less than AUTO_KEEP
     if (
-      (context._sampling.priority !== undefined) ||
-      (!root)
+      context._sampling.priority !== undefined ||
+      !root
     ) return // noop span
 
     log.trace(span, auto)

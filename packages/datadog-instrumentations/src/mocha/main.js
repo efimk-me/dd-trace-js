@@ -1275,7 +1275,7 @@ addHook({
   filePattern: String.raw`lib/runner\.(?:c?js)$`,
 }, function (runnerPackage, frameworkVersion) {
   const Runner = runnerPackage.Runner ?? runnerPackage.default ?? runnerPackage
-  if ((typeof Runner !== 'function') || patched.has(Runner)) return
+  if (typeof Runner !== 'function' || patched.has(Runner)) return
 
   patched.add(Runner)
   wrapRunnerEmit(Runner)

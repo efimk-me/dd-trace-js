@@ -133,7 +133,7 @@ function findCalculatedFallbackProperties () {
 const CALCULATED_FALLBACK_PROPERTIES = findCalculatedFallbackProperties()
 
 function withUndefined (type, entry, propertyName) {
-  if ((entry.default !== null) || CALCULATED_FALLBACK_PROPERTIES.has(propertyName)) return type
+  if (entry.default !== null || CALCULATED_FALLBACK_PROPERTIES.has(propertyName)) return type
   return `${type} | undefined`
 }
 

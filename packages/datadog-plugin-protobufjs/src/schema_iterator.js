@@ -145,9 +145,9 @@ class SchemaExtractor {
     span.setTag(SCHEMA_OPERATION, operation)
 
     if (
-      (!tracer._dataStreamsProcessor.canSampleSchema(operation)) ||
+      !tracer._dataStreamsProcessor.canSampleSchema(operation) ||
       // if the span is unsampled, do not sample the schema
-      (!tracer._prioritySampler.isSampled(span))
+      !tracer._prioritySampler.isSampled(span)
     ) {
       return
     }

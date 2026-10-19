@@ -221,10 +221,10 @@ function getNextAttemptIndex (task) {
 function prepareRumCorrelation (task, attemptIndex) {
   // A per-origin cookie cannot identify overlapping attempts without racing.
   if (
-    (!isRumCorrelationEnabled || isConcurrentTask(task)) ||
-    (typeof window === 'undefined' ||
+    !isRumCorrelationEnabled || isConcurrentTask(task) ||
+    typeof window === 'undefined' ||
     typeof document === 'undefined' ||
-    typeof rumTestExecutionIdCookieName !== 'string')
+    typeof rumTestExecutionIdCookieName !== 'string'
   ) return
 
   const testExecutionId = generateTestExecutionId()
@@ -286,7 +286,7 @@ function getRum () {
  * @param {object|undefined} rum
  */
 function getIsRumActive (rum) {
-  if (!rum || (typeof rum.getInternalContext !== 'function')) return false
+  if (!rum || typeof rum.getInternalContext !== 'function') return false
 
   try {
     return !!rum.getInternalContext()

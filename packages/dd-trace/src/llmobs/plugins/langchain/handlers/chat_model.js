@@ -63,10 +63,10 @@ class LangChainLLMObsChatModelHandler extends LangChainLLMObsHandler {
   getTokenUsage (results) {
     const tokens = this.checkTokenUsageChatOrLLMResult(results)
     if (
-      (tokens.totalTokens > 0) ||
+      tokens.totalTokens > 0 ||
       // providers that report usage on each generated message instead of on `llmOutput`; counts are
       // summed per run so a run split across generations is totalled once
-      (!results.generations)
+      !results.generations
     ) return tokens
 
     const tokensPerRunId = {}

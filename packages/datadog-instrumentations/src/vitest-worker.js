@@ -354,7 +354,7 @@ function hasConcurrentTask (tasks) {
   if (!tasks) return false
 
   for (const task of tasks) {
-    if ((task.concurrent === true) || hasConcurrentTask(task.tasks)) return true
+    if (task.concurrent === true || hasConcurrentTask(task.tasks)) return true
   }
 
   return false

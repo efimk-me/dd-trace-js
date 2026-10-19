@@ -514,7 +514,7 @@ function maybeRecordFinalParallelEfdStatus ({ pickleId, testFileAbsolutePath, te
   const testStatuses = newTestsByTestFullname.get(testFullname)
   const finished = pickleResultByFile[testFileAbsolutePath]
 
-  if (efdRetryCount === undefined || !testStatuses || !finished || (testStatuses.length !== efdRetryCount + 1)) return
+  if (efdRetryCount === undefined || !testStatuses || !finished || testStatuses.length !== efdRetryCount + 1) return
 
   finished.push(getTestStatusFromRetries(testStatuses))
   newTestsByTestFullname.delete(testFullname)

@@ -95,10 +95,11 @@ function onFastifyRoute (routeData) {
  * @param {{ method?: string, path?: string }} param0
  */
 function onExpressRoute ({ method, path }) {
-  if (!method || !path) return
-
-  // If wildcard already recorded for this path, skip specific methods
-  if (wildcardEndpoints.has(path)) return
+  if (
+    (!method || !path) ||
+    // If wildcard already recorded for this path, skip specific methods
+    (wildcardEndpoints.has(path))
+  ) return
 
   recordEndpoint(method, path, 'express.request')
 
